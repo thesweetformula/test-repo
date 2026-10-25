@@ -1,13 +1,17 @@
 # Style spec
 
-Not written. The human final and the raw proxy for Week 48 Video 1 had not arrived when this pipeline was run.
+Week 48 Video 1 is measured in [`week48.style.yaml`](week48.style.yaml). That file is the spec. This page is the short version.
 
-When they do, fill this from the pixels and the timeline, not from memory:
+The two proxies are **not the same recording**. The raw is a double-taken antibiotics script (`IMG_7929.MOV`, 162 seconds). The human final is "Why Stress Hits Your Gut" (70 seconds). Whisper token overlap is 0.05. A FilmCraft rough cut of this raw was not made, because the final's words are not in the raw.
 
-- Duration of the raw proxy vs the final, and which spans were removed (silence, restarts, asides).
-- Caption look: one word at a time, or a line with the current word highlighted. Font, weight, size as a fraction of frame height, fill, outline or background, alignment, distance from the bottom or top safe area.
-- Zoom: when a punch-in starts and ends, how large the scale change is, whether it eases, and whether it resets on a cut.
-- Anything else in the final that the raw does not have: intro or end card, music, whoosh, loudness, color.
-- Frame size, frame rate, and whether the raw is stored sideways with a rotation matrix.
+What the human final actually does, measured on the 360×640 proxy:
 
-`config/edit.json` is only the synthetic test's settings. It is not this spec.
+- Captions sit in the **vertical middle**, white, no background box, about 2–6 words at a time, held for about a second. Not one word at a time, and not a full sentence.
+- The first 2–3 seconds are a two-line hook, "Your Stomach Knots" / "Before Big Events?", in that same band. It is not the spoken line.
+- Loudness on this proxy is about **−13.4 LUFS**, loudness range 2 LU. Almost no silence. A music bed was not separable from the voice.
+- Six hard cuts. Two of them stay on the talking head. One stretch (about 31–34 s) is a dark picture that did not OCR. One stretch (about 46–51 s) is a near-black card that still carries the speech caption, plus shapes tesseract could not read. Those shapes are not named.
+- A steady punch-in was not measurable. One 4-second window near 60 seconds preferred a 1.15× scale. The rest did not.
+
+`config/edit.json` is only the synthetic test. It burns one word at a time in the lower fifth. That is a different caption than this final.
+
+The transcript Jackson will edit, and the words Whisper was unsure of, are in [RESULTS.md](../RESULTS.md).
