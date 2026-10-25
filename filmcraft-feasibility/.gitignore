@@ -1,0 +1,27 @@
+# Generated media, project files, and local tooling. Do not commit.
+.venv/
+work/
+incoming/
+__pycache__/
+*.pyc
+
+*.mp4
+*.mov
+*.MOV
+*.m4v
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.aac
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.tif
+*.tiff
+*.bmp
+*.fcproj
+*.srt
+*.vtt

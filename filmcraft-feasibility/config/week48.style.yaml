@@ -1,0 +1,189 @@
+# Measured from the Week 48 low-resolution proxies. Feasibility note, not a grade.
+# The proxies themselves are gitignored under work/week48/. Do not commit them.
+
+video: Week 48 Video 1
+human_file_title: "1 - 2026-10-23 - Why Stress Hits Your Gut"
+raw_camera_original: IMG_7929.MOV
+
+proxies:
+  raw:
+    path: work/week48/raw.mp4
+    origin: >
+      Low-resolution copy of IMG_7929.MOV. Rotation was already applied.
+      The SDR conversion was not tonemapped, so color can look flat.
+      The camera original is an iPhone 4K HEVC 60 fps HLG file. This proxy is not that file.
+    container: MPEG-4
+    video: H.264 High, yuv420p, bt709 limited, 202x360, 30 fps, SAR 1:1
+    audio: AAC LC, 48 kHz, mono, about 65 kb/s
+    duration_s: 162.367
+    size_bytes: 11221906
+    filmcraft_0_12_0_probe: ok
+  final:
+    path: work/week48/final.mp4
+    origin: >
+      Low-resolution copy of the captioned master. The master is 1080x1920 at 60 fps.
+      This proxy is 360x640 at 30 fps, so caption and cut times are coarse.
+    container: MPEG-4
+    video: H.264 High, yuv420p, bt709 limited, 360x640, 30 fps, SAR 1:1
+    audio: AAC LC, 48 kHz, mono, about 65 kb/s
+    duration_s: 69.933
+    size_bytes: 8366348
+    filmcraft_0_12_0_probe: ok
+  does_not_test:
+    - iPhone HEVC decode
+    - a QuickTime rotation matrix
+    - 4K or 60 fps playback
+    - HDR / HLG tonemap
+    - true peak of the master (proxy AAC is about 65 kb/s)
+
+alignment:
+  same_recording: false
+  whisper_model: small
+  token_ratio: 0.052
+  method: SequenceMatcher on lowercase word tokens, autojunk off
+  raw_tokens: 395
+  final_tokens: 262
+  only_match_of_4_or_more: "your gut and your gut"
+  picture_histogram_correlation: 0.368
+  picture_note: >
+    Histogram correlation of a raw frame near 2 seconds against the final
+    frame at 2 seconds. Same-setup frames of the final against itself sit much higher.
+  rough_cut_feasible: false
+  rough_cut_reason: >
+    The final's words are not in this raw. Placing ranges from the raw on a
+    FilmCraft timeline cannot produce "Why Stress Hits Your Gut". No rough cut
+    was exported. Do not invent a stress script out of the antibiotics takes.
+
+final_style:
+  captions:
+    where: vertical middle of the frame, not the lower third
+    ocr_band_fraction_from_top: [0.40, 0.66]
+    speech_glyph_rows_on_640px_proxy: [311, 331]
+    speech_glyph_fraction_from_top: [0.486, 0.516]
+    speech_lines: 1
+    speech_words_per_cue: "about 2 to 6"
+    speech_hold: about one second, tracking the voice
+    karaoke_one_word: false
+    full_sentence_cues: false
+    fill_rgb_median: [255, 255, 251]
+    background_box: false
+    outline: dark neighbor beside the white glyphs; stroke width not measured
+    font_name: unknown at 360 px wide
+    glyph_height_px_on_proxy: [17, 20]
+    glyph_height_fraction_of_frame: 0.03
+    master_px_if_this_proxy_is_exactly_one_third: [51, 60]
+    opening_hook:
+      about_s: [0.0, 2.5]
+      lines_read_by_ocr:
+        - Your Stomach Knots
+        - Before Big Events?
+      verbatim_speech: false
+      note: >
+        Same central band as the later captions, two lines, then gone.
+        By about 6 seconds the captions are tracking speech
+        ("is one of the most common things").
+  picture:
+    hard_cut_times_s: [8.8, 30.9, 34.07, 43.4, 46.23, 51.43]
+    detector: ffmpeg select gt(scene,0.35) on the 30 fps proxy
+    jump_cuts_still_talking_head_s: [8.8, 43.4]
+    dark_insert_s: [30.9, 34.07]
+    dark_insert_note: >
+      Frames at 30s and 32s have mean luma about 21 and 26. They are not a flat
+      color field. Tesseract read no words. The 34s frame is a talking head
+      again, and the center band reads "but your bowel". The picture in the
+      insert was not identified.
+    near_black_card_s: [46.23, 51.43]
+    near_black_card_note: >
+      Frames at 46, 48, and 50 seconds are a flat field, median RGB about
+      [6, 12, 18], luma 12 over most rows. White speech captions remain, one
+      line, same vertical slot. Brighter shapes sit above the caption
+      (around y 159-269 on the 640 px proxy) and, at 48-50s, below it
+      (around y 420-504). Tesseract did not read those shapes. They are not named.
+    no_readable_lower_third: true
+  zoom:
+    cadence_found: false
+    method: >
+      Normalized cross-correlation of talking-head frames 4 seconds apart,
+      trying scales 1.00 to 1.30.
+    windows_preferring_1_00: [12, 40, 52, 56, 64]
+    only_clear_preference:
+      start_s: 60
+      scale: 1.15
+      score: 0.743
+      score_at_scale_1: 0.590
+      margin: 0.153
+    negative_scores_mean_a_cut_not_a_zoom_s: [20, 24]
+  loudness:
+    integrated_lufs: -13.4
+    lra_lu: 2.0
+    true_peak_dbfs_on_this_proxy: 0.7
+    rms_100ms_dbfs: {p10: -23.15, p50: -13.62, p90: -9.49}
+    fraction_of_windows_below_minus_35_dbfs: 0.0043
+    silencedetect_noise_minus_35_db_min_0.20s: 0
+    music_bed: not measured
+    music_note: >
+      The voice is heavily limited (loudness range 2 LU, almost no quiet windows).
+      A quiet music bed would sit under that and would not show up here.
+      Do not add music from this measurement. The +0.7 dBFS peak may be the
+      proxy encode rather than the master.
+
+raw_recording:
+  speech: double-taken explanation that antibiotics do not treat a cold
+  captions_seen: false
+  loudness:
+    integrated_lufs: -27.1
+    lra_lu: 11.3
+    true_peak_dbfs: -4.5
+    rms_100ms_dbfs: {p10: -75.46, p50: -35.68, p90: -23.23}
+    fraction_of_windows_below_minus_40_dbfs: 0.371
+  silences_noise_minus_35_db_min_0.35s:
+    count: 51
+    total_s: 39.35
+    longest_s: 3.842
+  take_pairs_note: >
+    Whisper segments come in immediate pairs (a line, a short gap, the line again).
+    Splitting only on gaps longer than 1.0 second collapses those pairs into
+    seven long spans and hides the repeats. The segment list is the take list.
+
+transcript:
+  primary: faster-whisper small, int8, CPU, beam 5, vad_filter off, word timestamps
+  cross_check: faster-whisper medium, int8, CPU, same settings
+  final_small_mean_word_prob: 0.955
+  raw_small_mean_word_prob: 0.923
+  final_small_wall_s: 7.388
+  raw_small_wall_s: 13.316
+  ocr: tesseract 5 on a 3x lanczos upsample of the center band, once per second
+  ocr_note: >
+    Where the center band was legible, it matched Whisper small.
+    Most of the 41 sampled seconds were not legible at 360 px. Those misses
+    are OCR failures, not disagreements with the transcript.
+  medium_on_the_full_final:
+    wall_s: 25.609
+    words: 179
+    mean_word_prob: 0.895
+    dropped_spans_s:
+      - [21.36, 30.56]
+      - [45.22, 61.42]
+    note: >
+      Both dropped spans are still captioned on screen. Small heard them.
+      Medium on the whole file is a cross-check, not the transcript.
+  medium_on_isolated_final_clips:
+    opening_0_to_5s: >
+      "Now that knot in your stomach before you go into a big meeting, it's not
+      actually in your head, it's actually in your gut." Mean word probability 0.953.
+      This is cleaner than small, whose first word ("in") was 0.027.
+    vagus_and_hormones: >
+      Confirms small: vagus nerve, cortisol, adrenaline, noradrenaline.
+    two_way_and_breathing: >
+      Confirms the head/gut lines and "breathe in for four, out for six".
+      Hears "two-way streak" at probability 0.472. Small heard "street" at 0.624.
+  medium_on_the_raw:
+    wall_s: 78.351
+    words: 423
+    mean_word_prob: 0.842
+    note: >
+      Lower mean probability than small, and it invented a bridge
+      ("depletedtalk forgot by how long") plus a near-zero-probability
+      "make money" line in place of "meet people". Both models spell the
+      surname Froome's. Paul is 0.99 on both medium takes.
+  editor: Jackson will correct the wording later. Low-confidence words are listed in RESULTS.md.

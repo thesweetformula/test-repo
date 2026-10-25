@@ -1,0 +1,24 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "sample_rate": 48000,
+  "drop_phrase": "cut this whole sentence from the edit",
+  "max_gap_seconds": 0.45,
+  "handle_seconds": 0.08,
+  "zoom_start_percent": 100,
+  "zoom_end_percent": 118,
+  "caption_style": {
+    "font": "Inter",
+    "size": 68,
+    "color": "#ffffff",
+    "background": true,
+    "backgroundColor": "#000000b3",
+    "align": "center",
+    "anchor": "bottom",
+    "margin": 0.16,
+    "outline": 0
+  },
+  "export_preset": "Social Vertical 1080×1920",
+  "loudness_lufs": -14
+}
