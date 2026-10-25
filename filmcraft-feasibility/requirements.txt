@@ -1,0 +1,4 @@
+# CPU transcription. PyAV 19 (pulled in by faster-whisper 1.2.1) rejects the
+# metadata_errors= argument that faster-whisper passes to av.open. scripts/transcribe.py
+# strips that keyword. Do not "fix" this by upgrading blindly; re-check av.open first.
+faster-whisper==1.2.1
